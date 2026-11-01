@@ -3,18 +3,26 @@
 An IntelliJ Platform plugin that reclaims IDE heap memory without a restart.
 
 freemem watches the IDE's heap usage in the background. When usage crosses a
-threshold it runs garbage collection and drops PSI caches for every open
-project. It can also be triggered by hand from the **Tools** menu.
+threshold it safely flushes open documents, drops PSI caches across open
+projects, closes idle editor tabs, and runs garbage collection. It also includes
+a live status bar indicator and a settings UI.
 
 ## Features
 
 - **Automatic reclaim** — checks heap usage on a fixed schedule (every 2 minutes
   by default) and frees memory once usage reaches the threshold (85% of max
   heap by default).
-- **Manual reclaim** — **Tools → Free IDE Memory (freemem)** runs GC, drops the
-  current project's PSI caches, and shows a balloon with how much was freed and
-  the current heap usage.
-- **Optional stale-tab closing** — off by default. See [Known limitations](#known-limitations).
+- **Emergency LowMemoryWatcher** — hooks into IntelliJ's platform memory watcher
+  to trigger immediate reclamation when the IDE detects native JVM low-memory events.
+- **Manual reclaim** — **Tools → Free IDE Memory (freemem)** or `Ctrl+Alt+Shift+M`
+  runs memory reclamation immediately with detailed balloon feedback.
+- **Status bar widget** — shows live heap % and MB in the bottom status bar
+  (`freemem: 68% (1400/2048MB)`). Clicking it runs an instant manual reclaim.
+- **Settings UI** — configure thresholds, intervals, cache drops, tab closing,
+  and notification preferences under **Settings → Tools → freemem**.
+- **Smart idle-tab closing** — tracks true editor tab access times (LRU) via
+  `FileEditorManagerListener` and safely closes unmodified tabs that have been
+  inactive beyond the configured cutoff.
 
 ## Compatibility
 
@@ -33,21 +41,23 @@ project. It can also be triggered by hand from the **Tools** menu.
 
 1. Build the plugin (see below), or use a released zip.
 2. In the IDE: **Settings → Plugins → ⚙ → Install Plugin from Disk…**
-3. Select `build/distributions/freemem-1.0.0.zip` (the zip, not the project folder).
+3. Select `build/distributions/freemem-1.1.zip` (the zip, not the project folder).
 4. Restart the IDE.
 
 ## Configuration
 
-Settings are stored in `freemem.xml` in the IDE's config `options` directory.
-There is no settings UI yet; to change a value, close the IDE and edit that file.
+Settings can be managed directly in the IDE via **Settings / Preferences → Tools → freemem**.
+Preferences are persisted to `freemem.xml` in the IDE's options directory.
 
 | Setting | Default | Meaning |
 |---|---|---|
+| `enableAutoReclaim` | `true` | Enable background heap monitoring and automatic reclamation |
 | `thresholdPercent` | `85` | Heap usage (% of max heap) that triggers a reclaim |
-| `checkIntervalMinutes` | `2` | How often heap usage is checked. Must be greater than 0 |
-| `dropPsiCaches` | `true` | Drop PSI caches for open projects during an automatic reclaim |
-| `closeIdleTabs` | `false` | Close stale editor tabs during an automatic reclaim |
-| `idleTabMinutes` | `30` | Age cutoff used by `closeIdleTabs` |
+| `checkIntervalMinutes` | `2` | How often heap usage is checked (minimum 1 minute) |
+| `dropPsiCaches` | `true` | Drop PSI syntax tree and indexing caches across open projects |
+| `closeIdleTabs` | `false` | Close inactive, unmodified editor tabs during a reclaim |
+| `idleTabMinutes` | `30` | Inactivity cutoff in minutes for idle tab closing |
+| `notifyOnAutoReclaim` | `false` | Show balloon notification when automatic reclaim runs |
 
 The background check starts the first time a project is opened.
 
@@ -61,7 +71,7 @@ included. Gradle 9 is not supported by `org.jetbrains.intellij` 1.17.x.
 ./gradlew buildPlugin
 ```
 
-Output: `build/distributions/freemem-1.0.0.zip`
+Output: `build/distributions/freemem-1.1.zip`
 
 Other useful tasks:
 
@@ -69,7 +79,7 @@ Other useful tasks:
 |---|---|
 | `./gradlew runIde` | Launch a sandbox IDE with the plugin installed |
 | `./gradlew runPluginVerifier` | Check binary compatibility against recent IDE releases |
-| `./gradlew signPlugin` | Produce `freemem-1.0.0-signed.zip` (needs signing variables) |
+| `./gradlew signPlugin` | Produce `freemem-1.1-signed.zip` (needs signing variables) |
 | `./gradlew publishPlugin` | Upload to JetBrains Marketplace (needs `PUBLISH_TOKEN`) |
 
 Sandbox IDE logs are written to `build/idea-sandbox/system/log/idea.log`.
@@ -95,23 +105,18 @@ release.
 
 ```
 src/main/kotlin/com/yourco/freemem/
-  FreeMemService.kt        App service: scheduled heap check and reclaim
-  FreeMemAction.kt         Tools menu action for a manual reclaim
-  FreeMemSettingsState.kt  Persisted settings (freemem.xml)
-  FreeMemStartup.kt        Starts FreeMemService when a project opens
+  FreeMemAction.kt                 Tools menu & shortcut action for manual reclaim
+  FreeMemConfigurable.kt           Settings UI (Tools -> freemem) via Kotlin UI DSL
+  FreeMemService.kt                App service: heap check, LowMemoryWatcher, and reclaim
+  FreeMemSettingsState.kt          Persisted configuration and settings listener topic
+  FreeMemStartup.kt                Starts FreeMemService when a project opens
+  FreeMemStatusBarWidget.kt        Real-time status bar memory indicator & click trigger
+  FreeMemStatusBarWidgetFactory.kt Status bar widget factory
+  FreeMemTabTracker.kt             LRU tab access tracker via FileEditorManagerListener
 src/main/resources/META-INF/plugin.xml
 ```
 
 ## Known limitations
 
-- **`closeIdleTabs` does not track tab activity.** It closes open files that are
-  read-only and whose file modification time is older than `idleTabMinutes`,
-  not tabs that have gone unused.
-- **Keyboard shortcut conflict.** The action's default shortcut,
-  Ctrl+Shift+F12, is also IntelliJ's *Hide All Tool Windows*. Use the Tools
-  menu or remap it under **Settings → Keymap**.
-- **No settings UI.** Values must be edited in `freemem.xml`.
-- **`checkIntervalMinutes` of 0 fails.** The scheduler rejects a non-positive
-  interval.
 - The plugin ID and vendor (`com.yourco.freemem`, *YourCo*) are placeholders and
   must be replaced before publishing to Marketplace.

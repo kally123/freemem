@@ -1,4 +1,4 @@
-package com.yourco.freemem
+package com.edigitalhub.freemem
 
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project

@@ -1,30 +1,49 @@
 <idea-plugin>
-    <id>com.yourco.freemem</id>
+    <id>com.edigitalhub.freemem</id>
     <name>freemem</name>
-    <vendor email="you@yourco.com" url="https://yourco.com">YourCo</vendor>
+    <version>1.1</version>
+    <vendor email="you@yourco.com" url="https://edigitalhub.vercel.app">edigitalhub</vendor>
     <description><![CDATA[
-        Automatically reclaims IntelliJ heap when usage crosses a threshold.
-        Drops PSI caches, triggers GC, and closes stale editor tabs.
-        Manual trigger via Tools menu or Ctrl+Shift+F12.
+        IntelliJ Platform plugin that automatically reclaims heap memory without restarting.
+        Monitors heap usage, runs GC, safely clears PSI caches, and closes idle editor tabs.
+        Includes a real-time status bar widget and settings configuration UI.
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService
-            serviceImplementation="com.yourco.freemem.FreeMemSettingsState"/>
+            serviceImplementation="com.edigitalhub.freemem.FreeMemSettingsState"/>
+        <applicationService
+            serviceImplementation="com.edigitalhub.freemem.FreeMemTabTracker"/>
         <postStartupActivity
-            implementation="com.yourco.freemem.FreeMemStartup"/>
+            implementation="com.edigitalhub.freemem.FreeMemStartup"/>
         <notificationGroup id="freemem" displayType="BALLOON"/>
+
+        <applicationConfigurable
+            parentId="tools"
+            instance="com.edigitalhub.freemem.FreeMemConfigurable"
+            id="com.edigitalhub.freemem.FreeMemConfigurable"
+            displayName="freemem"/>
+
+        <statusBarWidgetFactory
+            id="freemem.StatusBarWidget"
+            implementation="com.edigitalhub.freemem.FreeMemStatusBarWidgetFactory"/>
     </extensions>
+
+    <applicationListeners>
+        <listener
+            class="com.edigitalhub.freemem.FreeMemTabTracker"
+            topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+    </applicationListeners>
 
     <actions>
         <action id="freemem.FreeMemAction"
-                class="com.yourco.freemem.FreeMemAction"
+                class="com.edigitalhub.freemem.FreeMemAction"
                 text="Free IDE Memory (freemem)"
                 description="Run GC and drop PSI caches without restarting">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift F12"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt shift M"/>
         </action>
     </actions>
 </idea-plugin>
