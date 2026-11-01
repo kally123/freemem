@@ -1,0 +1,30 @@
+<idea-plugin>
+    <id>com.yourco.freemem</id>
+    <name>freemem</name>
+    <vendor email="you@yourco.com" url="https://yourco.com">YourCo</vendor>
+    <description><![CDATA[
+        Automatically reclaims IntelliJ heap when usage crosses a threshold.
+        Drops PSI caches, triggers GC, and closes stale editor tabs.
+        Manual trigger via Tools menu or Ctrl+Shift+F12.
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService
+            serviceImplementation="com.yourco.freemem.FreeMemSettingsState"/>
+        <postStartupActivity
+            implementation="com.yourco.freemem.FreeMemStartup"/>
+        <notificationGroup id="freemem" displayType="BALLOON"/>
+    </extensions>
+
+    <actions>
+        <action id="freemem.FreeMemAction"
+                class="com.yourco.freemem.FreeMemAction"
+                text="Free IDE Memory (freemem)"
+                description="Run GC and drop PSI caches without restarting">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift F12"/>
+        </action>
+    </actions>
+</idea-plugin>
