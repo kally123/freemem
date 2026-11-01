@@ -1,0 +1,42 @@
+{
+  "C:\\PROJECTS\\AI\\freemem\\build.gradle.kts": {
+    "mtime": 1793536370.0120876,
+    "ast_hash": "1aa96e8be1c6996518d6084f05ef2bfc",
+    "semantic_hash": "1aa96e8be1c6996518d6084f05ef2bfc"
+  },
+  "C:\\PROJECTS\\AI\\freemem\\gradlew": {
+    "mtime": 1793535887.8655326,
+    "ast_hash": "a43be8432bac3ffd05b3769aa42fe996",
+    "semantic_hash": "a43be8432bac3ffd05b3769aa42fe996"
+  },
+  "C:\\PROJECTS\\AI\\freemem\\settings.gradle.kts": {
+    "mtime": 1793535991.7827063,
+    "ast_hash": "096fe758a4329118a0b56851bba40dfb",
+    "semantic_hash": "096fe758a4329118a0b56851bba40dfb"
+  },
+  "C:\\PROJECTS\\AI\\freemem\\src\\main\\kotlin\\com\\yourco\\freemem\\FreeMemAction.kt": {
+    "mtime": 1793535992.1188214,
+    "ast_hash": "24c306aaffd1e95fef2dc9a64c0dfaf5",
+    "semantic_hash": "24c306aaffd1e95fef2dc9a64c0dfaf5"
+  },
+  "C:\\PROJECTS\\AI\\freemem\\src\\main\\kotlin\\com\\yourco\\freemem\\FreeMemService.kt": {
+    "mtime": 1793535992.2396667,
+    "ast_hash": "6619c90c851682c121bd4c1ad5c51fed",
+    "semantic_hash": "6619c90c851682c121bd4c1ad5c51fed"
+  },
+  "C:\\PROJECTS\\AI\\freemem\\src\\main\\kotlin\\com\\yourco\\freemem\\FreeMemSettingsState.kt": {
+    "mtime": 1793535992.3643022,
+    "ast_hash": "e2643bcae1b73ec8488fbb4ad665498b",
+    "semantic_hash": "e2643bcae1b73ec8488fbb4ad665498b"
+  },
+  "C:\\PROJECTS\\AI\\freemem\\src\\main\\kotlin\\com\\yourco\\freemem\\FreeMemStartup.kt": {
+    "mtime": 1793535992.4890063,
+    "ast_hash": "27dd5ec44ace11d136ada9bd18cfd18e",
+    "semantic_hash": "27dd5ec44ace11d136ada9bd18cfd18e"
+  },
+  "C:\\PROJECTS\\AI\\freemem\\README.md": {
+    "mtime": 1793553568.8799162,
+    "ast_hash": "c9bf04a069759f73888c5d2d619f471a",
+    "semantic_hash": "c9bf04a069759f73888c5d2d619f471a"
+  }
+}

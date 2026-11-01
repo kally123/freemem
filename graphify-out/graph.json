@@ -1,0 +1,908 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "freemem_plugin_architecture",
+        "label": "FreeMem Core Plugin Architecture",
+        "nodes": [
+          "readme_freememservice",
+          "readme_freememaction",
+          "readme_freememsettingsstate",
+          "readme_freememstartup"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "README.md"
+      },
+      {
+        "id": "memory_reclamation_flow",
+        "label": "Memory Reclamation Flow",
+        "nodes": [
+          "readme_automatic_reclaim",
+          "readme_manual_reclaim",
+          "readme_drop_psi_caches",
+          "readme_close_idle_tabs"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "README.md"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "build.gradle.kts",
+      "file_type": "code",
+      "source_file": "build.gradle.kts",
+      "source_location": "L1",
+      "id": "build_gradle",
+      "community": 6,
+      "norm_label": "build.gradle.kts"
+    },
+    {
+      "label": "settings.gradle.kts",
+      "file_type": "code",
+      "source_file": "settings.gradle.kts",
+      "source_location": "L1",
+      "id": "settings_gradle",
+      "community": 7,
+      "norm_label": "settings.gradle.kts"
+    },
+    {
+      "label": "FreeMemAction.kt",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemAction.kt",
+      "source_location": "L1",
+      "id": "freemem_freememaction",
+      "community": 1,
+      "norm_label": "freememaction.kt"
+    },
+    {
+      "label": "FreeMemAction",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemAction.kt",
+      "source_location": "L10",
+      "id": "freemem_freememaction_freememaction",
+      "community": 1,
+      "norm_label": "freememaction"
+    },
+    {
+      "label": "AnAction",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "anaction",
+      "community": 1,
+      "norm_label": "anaction"
+    },
+    {
+      "label": ".actionPerformed()",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemAction.kt",
+      "source_location": "L12",
+      "id": "freemem_freememaction_freememaction_actionperformed",
+      "community": 1,
+      "norm_label": ".actionperformed()"
+    },
+    {
+      "label": "AnActionEvent",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemAction.kt",
+      "source_location": "L12",
+      "id": "anactionevent",
+      "community": 1,
+      "norm_label": "anactionevent"
+    },
+    {
+      "label": ".usedMB()",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemAction.kt",
+      "source_location": "L31",
+      "id": "freemem_freememaction_freememaction_usedmb",
+      "community": 1,
+      "norm_label": ".usedmb()"
+    },
+    {
+      "label": ".maxMB()",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemAction.kt",
+      "source_location": "L34",
+      "id": "freemem_freememaction_freememaction_maxmb",
+      "community": 1,
+      "norm_label": ".maxmb()"
+    },
+    {
+      "label": "FreeMemService.kt",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L1",
+      "id": "freemem_freememservice",
+      "community": 0,
+      "norm_label": "freememservice.kt"
+    },
+    {
+      "label": "FreeMemService",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L13",
+      "id": "freemem_freememservice_freememservice",
+      "community": 0,
+      "norm_label": "freememservice"
+    },
+    {
+      "label": "com",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "com",
+      "community": 0,
+      "norm_label": "com"
+    },
+    {
+      "label": "ScheduledFuture",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L17",
+      "id": "scheduledfuture",
+      "community": 0,
+      "norm_label": "scheduledfuture"
+    },
+    {
+      "label": ".reschedule()",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L21",
+      "id": "freemem_freememservice_freememservice_reschedule",
+      "community": 0,
+      "norm_label": ".reschedule()"
+    },
+    {
+      "label": ".checkAndFree()",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L29",
+      "id": "freemem_freememservice_freememservice_checkandfree",
+      "community": 0,
+      "norm_label": ".checkandfree()"
+    },
+    {
+      "label": ".closeIdleEditorTabs()",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L53",
+      "id": "freemem_freememservice_freememservice_closeidleeditortabs",
+      "community": 0,
+      "norm_label": ".closeidleeditortabs()"
+    },
+    {
+      "label": "Int",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L53",
+      "id": "int",
+      "community": 0,
+      "norm_label": "int"
+    },
+    {
+      "label": ".dispose()",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L66",
+      "id": "freemem_freememservice_freememservice_dispose",
+      "community": 0,
+      "norm_label": ".dispose()"
+    },
+    {
+      "label": "FreeMemSettingsState.kt",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemSettingsState.kt",
+      "source_location": "L1",
+      "id": "freemem_freememsettingsstate",
+      "community": 2,
+      "norm_label": "freememsettingsstate.kt"
+    },
+    {
+      "label": "FreeMemSettingsState",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemSettingsState.kt",
+      "source_location": "L8",
+      "id": "freemem_freememsettingsstate_freememsettingsstate",
+      "community": 2,
+      "norm_label": "freememsettingsstate"
+    },
+    {
+      "label": "PersistentStateComponent",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "persistentstatecomponent",
+      "community": 2,
+      "norm_label": "persistentstatecomponent"
+    },
+    {
+      "label": "State",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemSettingsState.kt",
+      "source_location": "L11",
+      "id": "freemem_freememsettingsstate_state",
+      "community": 2,
+      "norm_label": "state"
+    },
+    {
+      "label": ".getState()",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemSettingsState.kt",
+      "source_location": "L21",
+      "id": "freemem_freememsettingsstate_freememsettingsstate_getstate",
+      "community": 2,
+      "norm_label": ".getstate()"
+    },
+    {
+      "label": ".loadState()",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemSettingsState.kt",
+      "source_location": "L22",
+      "id": "freemem_freememsettingsstate_freememsettingsstate_loadstate",
+      "community": 2,
+      "norm_label": ".loadstate()"
+    },
+    {
+      "label": "getInstance()",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemSettingsState.kt",
+      "source_location": "L25",
+      "id": "freemem_freememsettingsstate_getinstance",
+      "community": 2,
+      "norm_label": "getinstance()"
+    },
+    {
+      "label": "FreeMemStartup.kt",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemStartup.kt",
+      "source_location": "L1",
+      "id": "freemem_freememstartup",
+      "community": 4,
+      "norm_label": "freememstartup.kt"
+    },
+    {
+      "label": "FreeMemStartup",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemStartup.kt",
+      "source_location": "L8",
+      "id": "freemem_freememstartup_freememstartup",
+      "community": 4,
+      "norm_label": "freememstartup"
+    },
+    {
+      "label": "ProjectActivity",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "projectactivity",
+      "community": 4,
+      "norm_label": "projectactivity"
+    },
+    {
+      "label": ".execute()",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemStartup.kt",
+      "source_location": "L9",
+      "id": "freemem_freememstartup_freememstartup_execute",
+      "community": 4,
+      "norm_label": ".execute()"
+    },
+    {
+      "label": "Project",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemStartup.kt",
+      "source_location": "L9",
+      "id": "project",
+      "community": 4,
+      "norm_label": "project"
+    },
+    {
+      "label": "freemem",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": 1,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "An IntelliJ Platform plugin that reclaims IDE heap memory without restarting by monitoring heap usage, running GC, and clearing PSI caches.",
+      "id": "readme_freemem",
+      "community": 3,
+      "norm_label": "freemem"
+    },
+    {
+      "label": "Automatic Reclaim",
+      "file_type": "rationale",
+      "source_file": "README.md",
+      "source_location": 11,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Checks heap usage on a fixed schedule (default 2 minutes) and frees memory when usage reaches threshold (default 85%) to avoid out-of-memory without interrupting workflow.",
+      "id": "readme_automatic_reclaim",
+      "community": 3,
+      "norm_label": "automatic reclaim"
+    },
+    {
+      "label": "Manual Reclaim",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": 14,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "On-demand reclaim triggered via Tools menu action that runs GC, drops current project's PSI caches, and displays freed memory stats in a notification balloon.",
+      "id": "readme_manual_reclaim",
+      "community": 3,
+      "norm_label": "manual reclaim"
+    },
+    {
+      "label": "Drop PSI Caches",
+      "file_type": "rationale",
+      "source_file": "README.md",
+      "source_location": 48,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Drops PSI (Program Structure Interface) parse trees and caches across open projects to release substantial heap memory.",
+      "id": "readme_drop_psi_caches",
+      "community": 3,
+      "norm_label": "drop psi caches"
+    },
+    {
+      "label": "Close Idle Tabs",
+      "file_type": "rationale",
+      "source_file": "README.md",
+      "source_location": 49,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Closes read-only files whose modification time is older than idleTabMinutes during reclaim; disabled by default as it checks file timestamp rather than user interaction.",
+      "id": "readme_close_idle_tabs",
+      "community": 3,
+      "norm_label": "close idle tabs"
+    },
+    {
+      "label": "freemem.xml Configuration",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": 41,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Direct file configuration in the IDE config options directory without UI overhead, managing thresholds, intervals, and cache/tab policies.",
+      "id": "readme_configuration",
+      "community": 5,
+      "norm_label": "freemem.xml configuration"
+    },
+    {
+      "label": "FreeMemService",
+      "file_type": "code",
+      "source_file": "README.md",
+      "source_location": 98,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_freememservice",
+      "community": 5,
+      "norm_label": "freememservice"
+    },
+    {
+      "label": "FreeMemAction",
+      "file_type": "code",
+      "source_file": "README.md",
+      "source_location": 99,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_freememaction",
+      "community": 3,
+      "norm_label": "freememaction"
+    },
+    {
+      "label": "FreeMemSettingsState",
+      "file_type": "code",
+      "source_file": "README.md",
+      "source_location": 100,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_freememsettingsstate",
+      "community": 5,
+      "norm_label": "freememsettingsstate"
+    },
+    {
+      "label": "FreeMemStartup",
+      "file_type": "code",
+      "source_file": "README.md",
+      "source_location": 101,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_freememstartup",
+      "community": 5,
+      "norm_label": "freememstartup"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemAction.kt",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "freemem_freememaction",
+      "target": "freemem_freememaction_freememaction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemAction.kt",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "freemem_freememaction_freememaction",
+      "target": "anaction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemAction.kt",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "freemem_freememaction_freememaction",
+      "target": "freemem_freememaction_freememaction_actionperformed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemAction.kt",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "freemem_freememaction_freememaction",
+      "target": "freemem_freememaction_freememaction_maxmb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemAction.kt",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "freemem_freememaction_freememaction",
+      "target": "freemem_freememaction_freememaction_usedmb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemAction.kt",
+      "source_location": "L12",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "freemem_freememaction_freememaction_actionperformed",
+      "target": "anactionevent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemAction.kt",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "freemem_freememaction_freememaction_actionperformed",
+      "target": "freemem_freememaction_freememaction_maxmb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemAction.kt",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "freemem_freememaction_freememaction_actionperformed",
+      "target": "freemem_freememaction_freememaction_usedmb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "freemem_freememservice",
+      "target": "freemem_freememservice_freememservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "freemem_freememservice_freememservice",
+      "target": "com",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "freemem_freememservice_freememservice",
+      "target": "freemem_freememservice_freememservice_checkandfree",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "freemem_freememservice_freememservice",
+      "target": "freemem_freememservice_freememservice_closeidleeditortabs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "freemem_freememservice_freememservice",
+      "target": "freemem_freememservice_freememservice_dispose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "freemem_freememservice_freememservice",
+      "target": "freemem_freememservice_freememservice_reschedule",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L17",
+      "weight": 1.0,
+      "context": "field",
+      "source": "freemem_freememservice_freememservice",
+      "target": "scheduledfuture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "freemem_freememservice_freememservice_checkandfree",
+      "target": "freemem_freememservice_freememservice_closeidleeditortabs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemService.kt",
+      "source_location": "L53",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "freemem_freememservice_freememservice_closeidleeditortabs",
+      "target": "int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemSettingsState.kt",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "freemem_freememsettingsstate",
+      "target": "freemem_freememsettingsstate_freememsettingsstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemSettingsState.kt",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "freemem_freememsettingsstate",
+      "target": "freemem_freememsettingsstate_getinstance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemSettingsState.kt",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "freemem_freememsettingsstate",
+      "target": "freemem_freememsettingsstate_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemSettingsState.kt",
+      "source_location": "L8",
+      "weight": 1.0,
+      "context": "generic_arg",
+      "source": "freemem_freememsettingsstate_freememsettingsstate",
+      "target": "freemem_freememsettingsstate_freememsettingsstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemSettingsState.kt",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "freemem_freememsettingsstate_freememsettingsstate",
+      "target": "freemem_freememsettingsstate_freememsettingsstate_getstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemSettingsState.kt",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "freemem_freememsettingsstate_freememsettingsstate",
+      "target": "freemem_freememsettingsstate_freememsettingsstate_loadstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemSettingsState.kt",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "freemem_freememsettingsstate_freememsettingsstate",
+      "target": "persistentstatecomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemSettingsState.kt",
+      "source_location": "L25",
+      "weight": 1.0,
+      "context": "return_type",
+      "source": "freemem_freememsettingsstate_getinstance",
+      "target": "freemem_freememsettingsstate_freememsettingsstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemSettingsState.kt",
+      "source_location": "L21",
+      "weight": 1.0,
+      "context": "return_type",
+      "source": "freemem_freememsettingsstate_freememsettingsstate_getstate",
+      "target": "freemem_freememsettingsstate_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemSettingsState.kt",
+      "source_location": "L22",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "freemem_freememsettingsstate_freememsettingsstate_loadstate",
+      "target": "freemem_freememsettingsstate_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemStartup.kt",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "freemem_freememstartup",
+      "target": "freemem_freememstartup_freememstartup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemStartup.kt",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "freemem_freememstartup_freememstartup",
+      "target": "freemem_freememstartup_freememstartup_execute",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemStartup.kt",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "freemem_freememstartup_freememstartup",
+      "target": "projectactivity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/yourco/freemem/FreeMemStartup.kt",
+      "source_location": "L9",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "freemem_freememstartup_freememstartup_execute",
+      "target": "project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": 11,
+      "weight": 1.0,
+      "source": "readme_freemem",
+      "target": "readme_automatic_reclaim"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": 14,
+      "weight": 1.0,
+      "source": "readme_freemem",
+      "target": "readme_manual_reclaim"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": 49,
+      "weight": 1.0,
+      "source": "readme_automatic_reclaim",
+      "target": "readme_close_idle_tabs"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": 48,
+      "weight": 1.0,
+      "source": "readme_automatic_reclaim",
+      "target": "readme_drop_psi_caches"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_automatic_reclaim",
+      "target": "readme_manual_reclaim"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "README.md",
+      "source_location": 98,
+      "weight": 1.0,
+      "source": "readme_freememservice",
+      "target": "readme_automatic_reclaim"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "README.md",
+      "source_location": 99,
+      "weight": 1.0,
+      "source": "readme_freememaction",
+      "target": "readme_manual_reclaim"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": 14,
+      "weight": 1.0,
+      "source": "readme_manual_reclaim",
+      "target": "readme_drop_psi_caches"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": 100,
+      "weight": 1.0,
+      "source": "readme_freememsettingsstate",
+      "target": "readme_configuration"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "README.md",
+      "source_location": 98,
+      "weight": 1.0,
+      "source": "readme_freememservice",
+      "target": "readme_freememsettingsstate"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": 101,
+      "weight": 1.0,
+      "source": "readme_freememstartup",
+      "target": "readme_freememservice"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "freemem_plugin_architecture",
+      "label": "FreeMem Core Plugin Architecture",
+      "nodes": [
+        "readme_freememservice",
+        "readme_freememaction",
+        "readme_freememsettingsstate",
+        "readme_freememstartup"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md"
+    },
+    {
+      "id": "memory_reclamation_flow",
+      "label": "Memory Reclamation Flow",
+      "nodes": [
+        "readme_automatic_reclaim",
+        "readme_manual_reclaim",
+        "readme_drop_psi_caches",
+        "readme_close_idle_tabs"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md"
+    }
+  ],
+  "built_at_commit": "9f8f526000a77fc04c7c05c5fe09926a99b50fbf"
+}
