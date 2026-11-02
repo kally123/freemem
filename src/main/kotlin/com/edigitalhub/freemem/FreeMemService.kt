@@ -9,9 +9,13 @@ import com.intellij.openapi.components.service
 import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.openapi.fileEditor.FileEditorManager
+import com.intellij.openapi.progress.ProcessCanceledException
+import com.intellij.openapi.progress.ProgressIndicator
+import com.intellij.openapi.progress.Task
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManager
 import com.intellij.openapi.util.LowMemoryWatcher
+import com.intellij.openapi.wm.WindowManager
 import com.intellij.psi.PsiManager
 import com.intellij.util.concurrency.AppExecutorUtil
 import java.util.concurrent.ScheduledFuture
@@ -47,7 +51,10 @@ class FreeMemService : Disposable {
         // Emergency reclaim when JVM encounters native low memory conditions
         LowMemoryWatcher.register({
             log.warn("freemem: Low memory event detected by IDE runtime! Running emergency cleanup.")
-            performReclaim(isManual = false, targetProject = null)
+            // Reclaim on a pooled thread so the platform's other low-memory listeners aren't held up
+            AppExecutorUtil.getAppExecutorService().execute {
+                performReclaim(isManual = false, targetProject = null)
+            }
         }, this)
 
         reschedule()
@@ -91,25 +98,48 @@ class FreeMemService : Disposable {
         if (usedPct < settings.thresholdPercent) return
 
         log.info("freemem: heap at $usedPct% (exceeds threshold ${settings.thresholdPercent}%) — initiating reclaim")
-        val stats = performReclaim(isManual = false, targetProject = null)
+        // An exception escaping here would cancel the fixed-delay schedule and stop all future checks
+        val stats = try {
+            performReclaim(isManual = false, targetProject = null)
+        } catch (e: ProcessCanceledException) {
+            throw e
+        } catch (e: Exception) {
+            log.warn("freemem: automatic reclaim failed", e)
+            return
+        }
 
         if (settings.notifyOnAutoReclaim) {
             notifyStats(stats, null, "Auto-reclaim triggered ($usedPct% heap)")
         }
     }
 
+    /** Runs a manual reclaim as a background task so the GC never blocks the EDT. */
+    fun reclaimInBackground(project: Project?, title: String) {
+        object : Task.Backgroundable(project, "Freeing IDE memory", false) {
+            private lateinit var stats: ReclaimStats
+
+            override fun run(indicator: ProgressIndicator) {
+                stats = performReclaim(isManual = true, targetProject = project)
+            }
+
+            override fun onSuccess() {
+                notifyStats(stats, project, title)
+                project?.let { WindowManager.getInstance().getStatusBar(it)?.updateWidget(FreeMemStatusBarWidget.ID) }
+            }
+        }.queue()
+    }
+
+    /** Hops to the EDT only for document, PSI, and editor work; call it off the EDT. */
     fun performReclaim(isManual: Boolean, targetProject: Project?): ReclaimStats {
         val settings = FreeMemSettingsState.getInstance().state
         val beforeMB = usedMB()
 
-        // 1. Flush documents to disk to ensure PSI caches can be safely invalidated
         ApplicationManager.getApplication().invokeAndWait {
+            // 1. Flush documents to disk to ensure PSI caches can be safely invalidated
             FileDocumentManager.getInstance().saveAllDocuments()
-        }
 
-        // 2. Drop PSI caches across projects
-        if (settings.dropPsiCaches || isManual) {
-            ApplicationManager.getApplication().runReadAction {
+            // 2. Drop PSI caches across projects (dropPsiCaches is EDT-only)
+            if (settings.dropPsiCaches || isManual) {
                 val projects = if (targetProject != null && !isManual) {
                     listOf(targetProject)
                 } else {

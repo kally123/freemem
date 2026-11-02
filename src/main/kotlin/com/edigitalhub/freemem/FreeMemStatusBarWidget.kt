@@ -1,11 +1,17 @@
 package com.edigitalhub.freemem
 
+import com.intellij.ide.DataManager
+import com.intellij.openapi.actionSystem.ActionManager
+import com.intellij.openapi.actionSystem.DefaultActionGroup
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.ui.popup.JBPopupFactory
 import com.intellij.openapi.wm.StatusBar
 import com.intellij.openapi.wm.StatusBarWidget
+import com.intellij.ui.awt.RelativePoint
 import com.intellij.util.Consumer
 import com.intellij.util.concurrency.AppExecutorUtil
 import java.awt.Component
+import java.awt.Point
 import java.awt.event.MouseEvent
 import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.TimeUnit
@@ -44,16 +50,26 @@ class FreeMemStatusBarWidget(private val project: Project) : StatusBarWidget, St
 
     override fun getTooltipText(): String {
         val service = FreeMemService.getInstance()
-        return "freemem: Click to reclaim memory now\n" +
+        return "freemem: Click to reclaim memory or open settings\n" +
                 "Heap usage: ${FreeMemService.usedPercent()}%\n" +
                 "Total freed this session: ${service.totalFreedMB.get()} MB (${service.reclaimCount.get()} reclaims)"
     }
 
-    override fun getClickConsumer(): Consumer<MouseEvent> = Consumer { _ ->
-        val service = FreeMemService.getInstance()
-        val stats = service.performReclaim(isManual = true, targetProject = project)
-        service.notifyStats(stats, project, "Manual reclaim triggered from status bar")
-        update()
+    override fun getClickConsumer(): Consumer<MouseEvent> = Consumer { e ->
+        val component = e.component
+        val actionManager = ActionManager.getInstance()
+        val group = DefaultActionGroup(
+            actionManager.getAction("freemem.FreeMemAction"),
+            actionManager.getAction("freemem.FreeMemSettingsAction")
+        )
+        val popup = JBPopupFactory.getInstance().createActionGroupPopup(
+            "freemem",
+            group,
+            DataManager.getInstance().getDataContext(component),
+            JBPopupFactory.ActionSelectionAid.SPEEDSEARCH,
+            false
+        )
+        popup.show(RelativePoint(component, Point(0, -popup.content.preferredSize.height)))
     }
 
     fun update() {
