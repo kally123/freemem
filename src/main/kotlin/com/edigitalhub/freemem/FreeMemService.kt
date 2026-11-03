@@ -159,9 +159,8 @@ class FreeMemService : Disposable {
             closedTabs = closeIdleTabsAcrossProjects(settings.idleTabMinutes)
         }
 
-        // 4. Trigger garbage collection and finalization
-        System.gc()
-        System.runFinalization()
+        // 4. Trigger garbage collection. (System.runFinalization() is intentionally
+        // not used: finalization is deprecated for removal, JEP 421.)
         System.gc()
 
         val afterMB = usedMB()
