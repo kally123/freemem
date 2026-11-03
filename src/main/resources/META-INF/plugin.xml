@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.edigitalhub.freemem</id>
     <name>freemem</name>
-    <version>1.1</version>
+    <version>1.2.0</version>
     <vendor email="you@yourco.com" url="https://edigitalhub.vercel.app">edigitalhub</vendor>
     <description><![CDATA[
         IntelliJ Platform plugin that automatically reclaims heap memory without restarting.
@@ -44,6 +44,12 @@
                 description="Run GC and drop PSI caches without restarting">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt shift M"/>
+        </action>
+        <action id="freemem.FreeMemSettingsAction"
+                class="com.edigitalhub.freemem.FreeMemSettingsAction"
+                text="freemem Settings..."
+                description="Configure memory limits and automatic reclaim">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
         </action>
     </actions>
 </idea-plugin>

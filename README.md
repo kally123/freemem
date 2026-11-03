@@ -17,9 +17,11 @@ a live status bar indicator and a settings UI.
 - **Manual reclaim** — **Tools → Free IDE Memory (freemem)** or `Ctrl+Alt+Shift+M`
   runs memory reclamation immediately with detailed balloon feedback.
 - **Status bar widget** — shows live heap % and MB in the bottom status bar
-  (`freemem: 68% (1400/2048MB)`). Clicking it runs an instant manual reclaim.
-- **Settings UI** — configure thresholds, intervals, cache drops, tab closing,
-  and notification preferences under **Settings → Tools → freemem**.
+  (`freemem: 68% (1400/2048MB)`). Clicking it opens a menu to reclaim memory
+  now or open freemem settings.
+- **Settings UI** — set the IDE's maximum heap (`-Xmx`, applied after restart)
+  and configure thresholds, intervals, cache drops, tab closing, and notification
+  preferences under **Settings → Tools → freemem** (also **Tools → freemem Settings…**).
 - **Smart idle-tab closing** — tracks true editor tab access times (LRU) via
   `FileEditorManagerListener` and safely closes unmodified tabs that have been
   inactive beyond the configured cutoff.
@@ -41,7 +43,7 @@ a live status bar indicator and a settings UI.
 
 1. Build the plugin (see below), or use a released zip.
 2. In the IDE: **Settings → Plugins → ⚙ → Install Plugin from Disk…**
-3. Select `build/distributions/freemem-1.1.zip` (the zip, not the project folder).
+3. Select `build/distributions/freemem-1.2.0.zip` (the zip, not the project folder).
 4. Restart the IDE.
 
 ## Configuration
@@ -71,7 +73,7 @@ included. Gradle 9 is not supported by `org.jetbrains.intellij` 1.17.x.
 ./gradlew buildPlugin
 ```
 
-Output: `build/distributions/freemem-1.1.zip`
+Output: `build/distributions/freemem-1.2.0.zip`
 
 Other useful tasks:
 
@@ -79,7 +81,7 @@ Other useful tasks:
 |---|---|
 | `./gradlew runIde` | Launch a sandbox IDE with the plugin installed |
 | `./gradlew runPluginVerifier` | Check binary compatibility against recent IDE releases |
-| `./gradlew signPlugin` | Produce `freemem-1.1-signed.zip` (needs signing variables) |
+| `./gradlew signPlugin` | Produce `freemem-1.2.0-signed.zip` (needs signing variables) |
 | `./gradlew publishPlugin` | Upload to JetBrains Marketplace (needs `PUBLISH_TOKEN`) |
 
 Sandbox IDE logs are written to `build/idea-sandbox/system/log/idea.log`.
@@ -104,13 +106,14 @@ release.
 ## Project layout
 
 ```
-src/main/kotlin/com/yourco/freemem/
+src/main/kotlin/com/edigitalhub/freemem/
   FreeMemAction.kt                 Tools menu & shortcut action for manual reclaim
-  FreeMemConfigurable.kt           Settings UI (Tools -> freemem) via Kotlin UI DSL
+  FreeMemConfigurable.kt           Settings UI (Tools -> freemem) incl. -Xmx editor, via Kotlin UI DSL
+  FreeMemSettingsAction.kt         Tools menu action that opens the settings page
   FreeMemService.kt                App service: heap check, LowMemoryWatcher, and reclaim
   FreeMemSettingsState.kt          Persisted configuration and settings listener topic
   FreeMemStartup.kt                Starts FreeMemService when a project opens
-  FreeMemStatusBarWidget.kt        Real-time status bar memory indicator & click trigger
+  FreeMemStatusBarWidget.kt        Real-time status bar memory indicator & click menu
   FreeMemStatusBarWidgetFactory.kt Status bar widget factory
   FreeMemTabTracker.kt             LRU tab access tracker via FileEditorManagerListener
 src/main/resources/META-INF/plugin.xml

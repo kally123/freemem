@@ -11,6 +11,12 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    testImplementation("junit:junit:4.13.2")
+    // The 2024.1 test framework needs opentest4j at runtime
+    testImplementation("org.opentest4j:opentest4j:1.3.0")
+}
+
 intellij {
     pluginName = providers.gradleProperty("pluginName")
     version    = providers.gradleProperty("platformVersion")
