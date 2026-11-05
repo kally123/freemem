@@ -34,7 +34,8 @@ tasks {
     }
     patchPluginXml {
         sinceBuild = "241"
-        untilBuild = "262.*"
+        // No upper bound: omit <until-build> so the plugin stays compatible with all future IDE versions.
+        untilBuild = provider { null }
     }
     signPlugin {
         certificateChain = providers.environmentVariable("CERTIFICATE_CHAIN")

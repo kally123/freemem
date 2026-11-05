@@ -31,7 +31,7 @@ a live status bar indicator and a settings UI.
 | | |
 |---|---|
 | IDEs | All IntelliJ Platform IDEs (depends only on `com.intellij.modules.platform`) |
-| Builds | `241` – `262.*` (2024.1 – 2026.2) |
+| Builds | `241`+ (2024.1 and all later versions) |
 | Built against | IntelliJ IDEA Community 2024.1 |
 | JDK | 17 |
 
